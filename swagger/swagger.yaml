@@ -1,0 +1,166 @@
+basePath: /v1
+consumes:
+- application/json
+definitions:
+  Secret:
+    description: Secret media type (default view)
+    example:
+      secret: I'm a secret, share me with someone safely please.
+    properties:
+      secret:
+        description: A secret to be shared with someone.
+        example: I'm a secret, share me with someone safely please.
+        maxLength: 255
+        minLength: 1
+        pattern: ^[[:print:]]+
+        type: string
+    required:
+    - secret
+    title: 'Mediatype identifier: application/vnd.secret+json; view=default'
+    type: object
+  SecretPayload:
+    example:
+      secret: I'm a secret, share me with someone safely please.
+    properties:
+      secret:
+        description: A secret to be shared with someone.
+        example: I'm a secret, share me with someone safely please.
+        maxLength: 255
+        minLength: 1
+        pattern: ^[[:print:]]+
+        type: string
+    required:
+    - secret
+    title: SecretPayload
+    type: object
+  error:
+    description: Error response media type (default view)
+    example:
+      code: invalid_value
+      detail: Value of ID must be an integer
+      id: 3F1FKVRR
+      meta:
+        timestamp: 1.458609e+09
+      status: "400"
+    properties:
+      code:
+        description: an application-specific error code, expressed as a string value.
+        example: invalid_value
+        type: string
+      detail:
+        description: a human-readable explanation specific to this occurrence of the
+          problem.
+        example: Value of ID must be an integer
+        type: string
+      id:
+        description: a unique identifier for this particular occurrence of the problem.
+        example: 3F1FKVRR
+        type: string
+      meta:
+        additionalProperties: true
+        description: a meta object containing non-standard meta-information about
+          the error.
+        example:
+          timestamp: 1.458609e+09
+        type: object
+      status:
+        description: the HTTP status code applicable to this problem, expressed as
+          a string value.
+        example: "400"
+        type: string
+    title: 'Mediatype identifier: application/vnd.goa.error; view=default'
+    type: object
+host: localhost:8080
+info:
+  description: Share your secrets using a dummy API
+  title: Dummy secrets
+  version: "1.0"
+paths:
+  /secrets:
+    post:
+      description: Store a new Secret
+      operationId: Secrets#create
+      parameters:
+      - in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/SecretPayload'
+      produces:
+      - application/vnd.goa.error
+      responses:
+        "201":
+          description: Created
+          headers:
+            Location:
+              description: Resource location
+              pattern: /secrets/[-a-zA-Z0-9]+
+              type: string
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/error'
+      schemes:
+      - http
+      summary: create Secrets
+      tags:
+      - Secrets
+  /secrets/{id}:
+    get:
+      description: Get a Secret by its ID
+      operationId: Secrets#show
+      parameters:
+      - in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/vnd.goa.error
+      - application/vnd.secret+json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Secret'
+        "201":
+          description: Created
+          headers:
+            Location:
+              description: Resource location
+              pattern: /secrets/[-a-zA-Z0-9]+
+              type: string
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/error'
+      schemes:
+      - http
+      summary: show Secrets
+      tags:
+      - Secrets
+produces:
+- application/json
+- application/xml
+- application/gob
+- application/x-gob
+responses:
+  BadRequest:
+    description: Bad Request
+  Created:
+    description: Created
+    headers:
+      Location:
+        description: Resource location
+        pattern: /secrets/[-a-zA-Z0-9]+
+        type: string
+  NotFound:
+    description: Not Found
+schemes:
+- http
+swagger: "2.0"
