@@ -5,11 +5,11 @@ Read the [testpurposes.net blogpost](https://testpurposes.net/2017/05/01/go-api-
 
 ## Build
 
-Just `go get -v github.com/julianvilas/dummy-secrets`
+Just `go get -v github.com/btoll/dummy-secrets`
 
 ### Re-generate code
 
-From `$GOPATH/src/github.com/julianvilas/dummy-secrets`: `goagen bootstrap -d github.com/julianvilas/dummy-secrets/design`
+From `$GOPATH/src/github.com/btoll/dummy-secrets`: `goagen bootstrap -d github.com/btoll/dummy-secrets/design`
 
 Then `go install ./...`
 
@@ -21,4 +21,4 @@ To use the cli, `$GOPATH/bin/dummy-secrets-cli`
 
 ## Swagger doc
 
-Just access http://swagger.goa.design/?url=julianvilas/dummy-secrets/design.
+Just access http://swagger.goa.design/?url=btoll/dummy-secrets/design.

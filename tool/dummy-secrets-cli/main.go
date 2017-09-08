@@ -2,13 +2,14 @@ package main
 
 import (
 	"fmt"
-	goaclient "github.com/goadesign/goa/client"
-	"github.com/julianvilas/dummy-secrets/client"
-	"github.com/julianvilas/dummy-secrets/tool/cli"
-	"github.com/spf13/cobra"
 	"net/http"
 	"os"
 	"time"
+
+	"github.com/btoll/dummy-secrets/client"
+	"github.com/btoll/dummy-secrets/tool/cli"
+	goaclient "github.com/goadesign/goa/client"
+	"github.com/spf13/cobra"
 )
 
 func main() {

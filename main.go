@@ -1,12 +1,12 @@
-//go:generate goagen bootstrap -d github.com/julianvilas/dummy-secrets/design
+//go:generate goagen bootstrap -d github.com/btoll/dummy-secrets/design
 
 package main
 
 import (
+	"github.com/btoll/dummy-secrets/app"
+	"github.com/btoll/dummy-secrets/persister"
 	"github.com/goadesign/goa"
 	"github.com/goadesign/goa/middleware"
-	"github.com/julianvilas/dummy-secrets/app"
-	"github.com/julianvilas/dummy-secrets/persister"
 )
 
 func main() {

@@ -76,7 +76,7 @@ info:
   title: Dummy secrets
   version: "1.0"
 paths:
-  /secrets:
+  /secrets/:
     post:
       description: Store a new Secret
       operationId: Secrets#create

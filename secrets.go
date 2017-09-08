@@ -1,9 +1,9 @@
 package main
 
 import (
+	"github.com/btoll/dummy-secrets/app"
+	"github.com/btoll/dummy-secrets/persister"
 	"github.com/goadesign/goa"
-	"github.com/julianvilas/dummy-secrets/app"
-	"github.com/julianvilas/dummy-secrets/persister"
 )
 
 // SecretsController implements the Secrets resource.
